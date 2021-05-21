@@ -3,10 +3,10 @@
 class HallsController < ApplicationController
 
   def index
-    @halls = Hall.all.map do |hall|
+    halls = Hall.all.map do |hall|
       hall_hash(hall)
     end
-    render json: @halls
+    render json: halls
   end
 
   def show
