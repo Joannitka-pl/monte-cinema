@@ -1,0 +1,2 @@
+class TicketDesk < ApplicationRecord
+end
