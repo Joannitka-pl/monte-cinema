@@ -1,3 +1,3 @@
 class Hall < ApplicationRecord
-  belongs_to :seance
+  validates_presence_of :number, :capacity
 end
