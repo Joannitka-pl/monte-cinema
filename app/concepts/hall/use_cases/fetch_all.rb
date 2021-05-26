@@ -3,7 +3,7 @@ module Hall
     class FetchAll
       attr_reader :repository
 
-      def initialize(repository: Repository.new)
+      def initialize(repository: Hall::Repository.new)
         @repository = repository
       end
 
