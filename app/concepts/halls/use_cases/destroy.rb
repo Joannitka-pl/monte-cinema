@@ -1,9 +1,9 @@
-module Hall
+module Halls
   module UseCases
     class Destroy
       attr_accessor :repository
 
-      def initialize(repository: Hall::Repository.new)
+      def initialize(repository: Halls::Repository.new)
         @repository = repository
       end
 

@@ -1,14 +1,14 @@
-module Hall
+module Halls
   module UseCases
     class FetchAll
       attr_reader :repository
 
-      def initialize(repository: Hall::Repository.new)
+      def initialize(repository: Halls::Repository.new)
         @repository = repository
       end
 
       def call
-        repository.fetch_all
+        repository.find_all
       end
     end
   end

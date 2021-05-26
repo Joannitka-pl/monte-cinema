@@ -1,4 +1,4 @@
-module Hall
+module Halls
   module Representers
     class Single
       attr_reader :hall

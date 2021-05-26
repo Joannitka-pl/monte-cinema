@@ -1,4 +1,4 @@
-module Hall
+module Halls
   class Repository
     attr_reader :adapter
 
@@ -6,12 +6,12 @@ module Hall
       @adapter = adapter
     end
 
-    def fetch_all
+    def find_all
       adapter.order(:id).all
     end
 
     def show
-      adapter.show(id)
+      adapter.find(id)
     end
 
     def create(params)
