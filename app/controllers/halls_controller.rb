@@ -1,51 +1,34 @@
 # frozen_string_literal: true
 
 class HallsController < ApplicationController
+  
+  before_action :set_hall, only: %i[show update destroy]
 
   def index
-    halls = Hall.all.map do |hall|
-      hall_hash(hall)
-    end
-    render json: halls
+    @halls = Hall::UseCases::FetchAll.new.call
+    render json: Hall::Representers::List.new(@halls).basic
   end
 
   def show
-    hall = Hall.find(params[:number])
-    @hall = hall_hash(hall)
-
-    render json: @hall
+    render json: Hall::Representers::Single.new(@hall).basic
   end
 
   def create
-    @hall = Hall.create(hall_params)
-
-      if @hall.save
-        render json: @hall, status: :created
-      else
-        render json: @hall.errors, status: :unprocessable_entity
-      end
+    @hall = Hall::UseCases::Create.new(params: hall_params).call
   end
 
   def update
-    if @hall.update(hall_params)
-      render json: @hall
-    else
-      render json: @hall.errors, status: :unprocessable_entity
-    end
+    Hall::UseCases::Update.new(id: @hall[:id], params: hall_params).call
   end
 
   def destroy
-    @hall.destroy
-    redirect_to root_url, notice: 'The hall has been deleted.'
+    Hall::UseCases::Destroy.new(id: @hall[:id])
   end
 
   private
 
-  def hall_hash
-    {
-      number: hall.number,
-      capacity: hall.capacity
-    }
+  def set_hall
+    @hall = Hall::Repository.new.find_by(params[:id])
   end
 
   def hall_params
