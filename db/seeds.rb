@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Hall.destroy_all
+
+# 5.times do |i|
+#   Hall.create!(number: 1,
+#                capacity: 100)
+# end
+
+# p 'Created #{Hall.count} halls.'
