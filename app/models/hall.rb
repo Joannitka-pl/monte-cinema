@@ -1,3 +1,3 @@
-class Model < ActiveRecord::Base
+class Hall < ActiveRecord::Base
   validates_presence_of :number, :capacity
 end
