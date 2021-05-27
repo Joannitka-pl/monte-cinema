@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2021_05_24_124730) do
-
+ActiveRecord::Schema.define(version: 2021_05_27_122208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +22,15 @@ ActiveRecord::Schema.define(version: 2021_05_24_124730) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "movies", force: :cascade do |t|
+    t.string "title"
+    t.integer "age_limit"
+    t.integer "duration"
+    t.bigint "seance_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["seance_id"], name: "index_movies_on_seance_id"
+  end
 
   create_table "seances", force: :cascade do |t|
     t.datetime "date"
@@ -31,6 +38,15 @@ ActiveRecord::Schema.define(version: 2021_05_24_124730) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "seats", force: :cascade do |t|
+    t.string "row"
+    t.integer "number"
+    t.boolean "availability"
+    t.bigint "hall_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hall_id"], name: "index_seats_on_hall_id"
+  end
 
   create_table "ticket_desks", force: :cascade do |t|
     t.string "type"
@@ -38,4 +54,6 @@ ActiveRecord::Schema.define(version: 2021_05_24_124730) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "movies", "seances"
+  add_foreign_key "seats", "halls"
 end
