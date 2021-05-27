@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_27_133539) do
+ActiveRecord::Schema.define(version: 2021_05_27_144006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,22 +35,30 @@ ActiveRecord::Schema.define(version: 2021_05_27_133539) do
     t.string "title"
     t.integer "age_limit"
     t.integer "duration"
-    t.bigint "seance_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["seance_id"], name: "index_movies_on_seance_id"
   end
 
   create_table "reservations", force: :cascade do |t|
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "client_id", null: false
+    t.bigint "seance_id", null: false
+    t.bigint "ticket_desk_id", null: false
+    t.index ["client_id"], name: "index_reservations_on_client_id"
+    t.index ["seance_id"], name: "index_reservations_on_seance_id"
+    t.index ["ticket_desk_id"], name: "index_reservations_on_ticket_desk_id"
   end
 
   create_table "seances", force: :cascade do |t|
     t.datetime "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "movie_id", null: false
+    t.bigint "hall_id", null: false
+    t.index ["hall_id"], name: "index_seances_on_hall_id"
+    t.index ["movie_id"], name: "index_seances_on_movie_id"
   end
 
   create_table "seats", force: :cascade do |t|
@@ -64,7 +72,7 @@ ActiveRecord::Schema.define(version: 2021_05_27_133539) do
   end
 
   create_table "ticket_desks", force: :cascade do |t|
-    t.string "type"
+    t.string "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -78,7 +86,11 @@ ActiveRecord::Schema.define(version: 2021_05_27_133539) do
     t.index ["reservation_id"], name: "index_tickets_on_reservation_id"
   end
 
-  add_foreign_key "movies", "seances"
+  add_foreign_key "reservations", "clients"
+  add_foreign_key "reservations", "seances"
+  add_foreign_key "reservations", "ticket_desks"
+  add_foreign_key "seances", "halls"
+  add_foreign_key "seances", "movies"
   add_foreign_key "seats", "halls"
   add_foreign_key "tickets", "reservations"
 end
