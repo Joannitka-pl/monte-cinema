@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class HallsController < ApplicationController
+
+  before_action :set_hall, only: %i[show update destroy]
   
   def index
     @halls = Halls::UseCases::FetchAll.new.call
