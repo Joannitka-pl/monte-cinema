@@ -10,7 +10,7 @@ module Halls
       adapter.order(:id).all
     end
 
-    def show
+    def show(id)
       adapter.find(id)
     end
 

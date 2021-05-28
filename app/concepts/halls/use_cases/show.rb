@@ -8,7 +8,7 @@ module Halls
       end
       
       def call(id:)
-        repository.find(id)
+        repository.show(id)
       end
     end
   end
