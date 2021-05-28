@@ -7,7 +7,7 @@ module Halls
         @repository = repository
       end
 
-      def call
+      def call(params:)
         repository.create(params)
       end
     end

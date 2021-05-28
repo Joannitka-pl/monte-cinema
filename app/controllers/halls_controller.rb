@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class HallsController < ApplicationController
-
-  before_action :set_hall, only: %i[show update destroy]
   
   def index
     @halls = Halls::UseCases::FetchAll.new.call
@@ -10,15 +8,28 @@ class HallsController < ApplicationController
   end
 
   def show
+    @hall = Halls::UseCases::Show.new.call
     render json: Halls::Representers::Single.new(@hall).basic
   end
 
   def create
-    @hall = Halls::UseCases::Create.new(params: hall_params).call
+    @hall = Halls::UseCases::Create.new.call(params: hall_params)
+
+    if @hall.valid?
+      render json: @hall, status: :created
+    else
+      render json: @hall.errors, status: :unprocessable_entity
+    end
   end
 
   def update
-    Halls::UseCases::Update.new(id: @hall[:id], params: hall_params).call
+    @hall = Halls::UseCases::Update.new(id: params[:id], params: hall_params).call
+
+    if @hall.valid?
+      render json: @hall
+    else
+      render json: @hall.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -27,11 +38,7 @@ class HallsController < ApplicationController
 
   private
 
-  def set_hall
-    @hall = Halls::Repository.new.find_by(params[:id])
-  end
-
   def hall_params
-    params.require(:hall).permit[:number, :capacity]
+    params.require(:hall).permit(:number, :capacity)
   end
 end
