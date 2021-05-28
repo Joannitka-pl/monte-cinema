@@ -8,7 +8,7 @@ module Halls
       end
 
       def call(id:)
-        repository.destroy
+        repository.destroy(id)
       end
     end
   end

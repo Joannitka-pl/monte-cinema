@@ -8,7 +8,7 @@ class HallsController < ApplicationController
   end
 
   def show
-    @hall = Halls::UseCases::Show.new.call
+    @hall = Halls::UseCases::Show.new.call(id: params[:id])
     render json: Halls::Representers::Single.new(@hall).basic
   end
 
@@ -23,7 +23,7 @@ class HallsController < ApplicationController
   end
 
   def update
-    @hall = Halls::UseCases::Update.new(id: params[:id], params: hall_params).call
+    @hall = Halls::UseCases::Update.new.call(id: params[:id], params: hall_params)
 
     if @hall.valid?
       render json: @hall
@@ -33,7 +33,7 @@ class HallsController < ApplicationController
   end
 
   def destroy
-    Halls::UseCases::Destroy.new(id: @hall[:id])
+    Halls::UseCases::Destroy.new.call(id: params[:id])
   end
 
   private

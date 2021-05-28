@@ -8,12 +8,10 @@ module Halls
       end
 
       def basic
-        halls.map do |hall|
           {
             id: hall.id,
             capacity: hall.capacity
           }
-        end
       end
     end
   end

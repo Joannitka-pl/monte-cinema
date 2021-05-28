@@ -22,7 +22,7 @@ module Halls
       adapter.update(id, params)
     end
 
-    def destroy
+    def destroy(id)
       adapter.destroy(id)
     end
   end
