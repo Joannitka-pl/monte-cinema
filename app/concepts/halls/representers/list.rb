@@ -9,10 +9,7 @@ module Halls
 
       def basic
         halls.map do |hall|
-          {
-            id: hall.id,
-            capacity: hall.capacity
-          }
+          Single.new(hall).basic
         end
       end
     end
