@@ -9,10 +9,7 @@ module Seances
 
       def basic
         seances.map do |seance|
-          {
-            id: seance.id,
-            date: seance.date
-          }
+            Single.new(seance).basic
         end
       end
     end

@@ -10,7 +10,10 @@ module Seances
       def basic
           {
             id: seance.id,
-            date: seance.date
+            date: seance.date,
+            time: seance.time,
+            movie: seance.movie_id,
+            hall: seance.hall_id
           }
       end
     end
