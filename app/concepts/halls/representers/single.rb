@@ -10,6 +10,7 @@ module Halls
       def basic
           {
             id: hall.id,
+            number: hall.number,
             capacity: hall.capacity
           }
       end

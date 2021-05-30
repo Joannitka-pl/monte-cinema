@@ -5,4 +5,5 @@ class Seance < ApplicationRecord
 
   validates :movie_id, presence: true
   validates :hall_id, presence: true
+  validates_associated :reservations
 end

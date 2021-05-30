@@ -3,4 +3,7 @@ class Reservation < ApplicationRecord
   belongs_to :ticket_desk
   belongs_to :client
   belongs_to :seance
+
+  validates_associated :tickets
+
 end

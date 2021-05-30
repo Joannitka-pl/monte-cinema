@@ -1,6 +1,8 @@
 class Hall < ApplicationRecord
   has_many :seats
-  has_many :seance
+  has_many :seances
+
+  validates_associated :seats, :seances
 
   validates_presence_of :number, :capacity
   validates :capacity, numericality: { only_integer: true }
