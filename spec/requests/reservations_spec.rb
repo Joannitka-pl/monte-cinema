@@ -19,8 +19,6 @@ RSpec.describe "`Reservations` requests" do
 
   describe "GET /reservations" do
 
-    before {seance}
-
     it "returns status 200" do
       get("/reservations")
       expect(response.status).to eq(200)
