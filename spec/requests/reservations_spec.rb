@@ -9,14 +9,6 @@ RSpec.describe "`Reservations` requests" do
   let!(:hall) { Hall.create(number: "1", capacity: 500) }
   let!(:movie) { Movie.create(title: 'Start Wars', age_limit: '18', duration: '200') }
 
-  before do
-    client
-    seance
-    ticket_desk
-    hall
-    movie
-  end
-
   describe "GET /reservations" do
 
     it "returns status 200" do
