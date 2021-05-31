@@ -2,12 +2,11 @@ require "rails_helper"
 
 RSpec.describe "Seances requests" do
 
-  let!(:hall) { Hall.create(number: "1", capacity: 500) }
-  let!(:movie) { Movie.create(title: 'Start Wars', age_limit: '18', duration: '200') }
+  let(:hall) { Hall.create!(number: "1", capacity: 500) }
+  let(:movie) { Movie.create!(title: 'Start Wars', age_limit: '18', duration: '200') }
+  let(:seance) { Seance.create!(date: "20/10/2020", time: '10:00', hall_id: hall.id, movie_id: movie.id) }
 
   describe "GET /seances" do
-  let!(:seance) { Seance.create(date: "20/10/2020", time: '10:00', hall_id: hall.id, movie_id: movie.id) }
-    
     it "returns status 200" do
       get("/seances")
       expect(response.status).to eq(200)
@@ -15,8 +14,6 @@ RSpec.describe "Seances requests" do
   end
 
   describe "GET /seances/:id" do
-  let!(:seance) { Seance.create(date: "20/10/2020", time: '10:00', hall_id: hall.id, movie_id: movie.id) }
-
   before {seance}
 
     it "returns status 200" do
@@ -33,8 +30,6 @@ RSpec.describe "Seances requests" do
   end
 
   describe "PUT /seances/:id" do
-  let!(:seance) { Seance.create(date: "20/10/2020", time: '10:00', hall_id: hall.id, movie_id: movie.id) }
-
     it "returns status 200" do
       put("/seances/#{seance.id}", params: { seance: { date: "20/11/2020", time: '12:00', hall_id: hall.id, movie_id: movie.id } } )
       expect(response.status).to eq(200)
@@ -42,8 +37,6 @@ RSpec.describe "Seances requests" do
   end
 
   describe "DELETE /seances/:id" do
-  let!(:seance) { Seance.create(date: "20/10/2020", time: '10:00', hall_id: hall.id, movie_id: movie.id) }
-
     it "returns status 204" do
       delete("/seances/#{seance.id}")
       expect(response.status).to eq(204)
