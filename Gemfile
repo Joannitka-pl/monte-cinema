@@ -27,6 +27,11 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem "sentry-ruby"
 gem "sentry-rails"
+gem "sidekiq"
+
+group :test do
+  gem 'rspec-sidekiq'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
