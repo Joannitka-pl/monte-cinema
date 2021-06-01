@@ -8,12 +8,12 @@ module Reservations
       end
 
       def call(params:)
-        repository.create(params)
+        reservation = repository.create(params)
+        ticket_desk = TicketDesks::UseCases::Show.new.call(id: params[:ticket_desk_id])
 
-      if ticket_desk.category == offline
-        ReservationTimeoutJob.set(wait: 10.minutes).perform_later(reservation)
-      end
-
+          if ticket_desk.category == offline
+            ReservationTimeoutJob.set(wait: 10.minutes).perform_later(reservation.id)
+          end
       end
     end
   end
