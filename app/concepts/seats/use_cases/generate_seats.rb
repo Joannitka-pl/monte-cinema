@@ -8,7 +8,7 @@ module Seats
       end
 
       def call
-        rows = ('A'..@last_row_letter)
+        rows = ('A'..@last_row_letter.capitalize)
         seats = (1..10)
         @available_seats = rows.zip(seats).map {|a| a.join(',')}
       end

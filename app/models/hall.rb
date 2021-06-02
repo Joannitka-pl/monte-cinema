@@ -1,8 +1,8 @@
 class Hall < ApplicationRecord
-  has_many :seats
-  has_many :seances
+  has_many :seats, dependent: :delete_all
+  has_many :seances, dependent: :delete_all
 
-  validates_associated :seats, :seances
+  # validates_associated :seats, :seances
 
   validates_presence_of :number, :capacity
   validates :capacity, numericality: { only_integer: true }
