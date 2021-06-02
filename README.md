@@ -1,6 +1,3 @@
-
-### App for managing cinema ticket booking.
-
 Functional requirements:
 - [ ] Endpoint to buy tickets/create reservation from ticket desk
 - [ ] Endpoint to buy tickets/create reservation from online application
