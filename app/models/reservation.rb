@@ -5,5 +5,5 @@ class Reservation < ApplicationRecord
   belongs_to :seance
 
   validates_associated :tickets
-  validates :status, presence: true, inclusion: {in: %w(confirmed pending temporary canceled), message: "%{status} is not a valid status"}
+  validates :status, presence: true, inclusion: {in: %w(confirmed active temporary canceled), message: "%{status} is not a valid status"}
 end
