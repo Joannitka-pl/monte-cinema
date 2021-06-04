@@ -1,18 +1,21 @@
 module Halls
   module UseCases
     class GenerateSeatsForHall
-      attr_reader :last_row_letter
+      attr_reader :available_seats
 
-      def initialize(id)
-        @hall = repository.find_by(id)
-        capacity = @hall.read_attribute(:capacity)
-        @last_row_letter = ('A'..'Z').to_a[capacity/10-1]
+      def initialize(capacity)
+        @capacity = capacity
       end
 
       def call
-        Seats::UseCases::GenerateSeats.new(@last_row_letter).call
-      end
+        #don't know why @capacity is a symbol
 
+        last_row_letter = ('A'..'Z').to_a[@capacity.to_s.to_i / 10-1]
+        rows = ('A'..last_row_letter.capitalize)
+        seats = (1..10)
+        available_seats = rows.zip(seats).map {|a| a.join(',')}
+        available_seats
+      end
     end
   end
 end

@@ -1,16 +1,16 @@
 module Seats
   module UseCases
     class GenerateSeats
-      attr_reader :last_row_letter
 
-      def initialize(last_row_letter)
-        @last_row_letter = last_row_letter
+      def initialize(capacity)
+        @capacity = capacity
       end
 
       def call
         rows = ('A'..@last_row_letter.capitalize)
         seats = (1..10)
-        @available_seats = rows.zip(seats).map {|a| a.join(',')}
+        available_seats = rows.map { |x|  }.map {|a| a.join(',')}
+         available_seats
       end
     end
   end
