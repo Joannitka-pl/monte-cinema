@@ -22,7 +22,7 @@ Client.destroy_all
 TicketDesk.destroy_all
 Reservation.destroy_all
 Ticket.destroy_all
-
+Seat.destroy_all
 
 hall_1 = Hall.create!(id: 1, number: 1, capacity: 200)
 hall_2 = Hall.create!(id: 2, number: 2, capacity: 100)

@@ -1,5 +1,4 @@
 class Hall < ApplicationRecord
-  has_many :seats, dependent: :destroy
   has_many :seances, dependent: :destroy
 
   # validates_associated :seats, :seances
