@@ -1,7 +1,7 @@
 module Seances
   module Representers
     class List
-      attr_reader :seances
+      attr_reader :seances, :movie
 
       def initialize(seances)
         @seances = seances
@@ -9,7 +9,13 @@ module Seances
 
       def basic
         seances.map do |seance|
-            Single.new(seance).basic
+          Single.new(seance).basic
+        end
+      end
+
+      def extended
+        seances.map do |seance|
+          Single.new(seance).extended
         end
       end
     end

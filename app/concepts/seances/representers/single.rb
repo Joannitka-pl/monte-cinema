@@ -12,23 +12,16 @@ module Seances
             id: seance.id,
             date: seance.date,
             time: seance.time,
-            movie_id: seance.movie_id,
-            hall_id: seance.hall_id
+            movie_id: seance.movie_id
           }
       end
 
-      # def extended
-      #   {
-      #     **basic,
-      #     movies: movie
-      #   }
-      # end
-      
-      # private 
-
-      # def movie
-      #   @movie = Movies::Representers::All.new(movie.title).basic
-      # end
+      def extended
+        {
+          **basic,
+          movies: movie.title
+        }
+      end
 
     end
   end

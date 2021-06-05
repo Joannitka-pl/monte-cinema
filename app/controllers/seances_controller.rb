@@ -3,8 +3,9 @@
 class SeancesController < ApplicationController
   
   def index
+    @movie = Movies::UseCases::Show.new.call(id: 11)
     @seances = Seances::UseCases::FetchAll.new.call
-    render json: Seances::Representers::List.new(@seances).basic
+    render json: Seances::Representers::List.new(@movie.seances).basic
   end
 
   def show
