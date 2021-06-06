@@ -5,11 +5,12 @@ module Seances
       super(adapter: adapter)
     end
 
-    def seats_available(seance)
-      seance.hall.generate_seats
+    def available_seats(seance)
+      seance.hall.generate_seats - reserved_seats(seance)
     end
 
-    def seats_not_available(seance)
+    def reserved_seats(seance)
+      seance.reservations.map(&:seat)
     end
   end
 end

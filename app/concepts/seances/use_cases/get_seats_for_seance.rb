@@ -9,7 +9,7 @@ module Seances
       end
 
       def call
-        { available_seats: repository.seats_available(seance) }
+        { available_seats: repository.available_seats(seance) }
       end
     end
   end
