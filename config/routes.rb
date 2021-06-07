@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  resources :halls, :seances, :movies, :tickets, 
-            :reservations, :clients, :ticket_desks, :seats
+
+      resources :tickets, :halls, :reservations, :clients, :ticket_desks, :movies, :seances
 end

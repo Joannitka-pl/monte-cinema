@@ -9,7 +9,13 @@ module Seances
 
       def basic
         seances.map do |seance|
-            Single.new(seance).basic
+          Single.new(seance).basic
+        end
+      end
+
+      def extended
+        seances.map do |seance|
+          Single.new(seance).extended
         end
       end
     end

@@ -1,5 +1,5 @@
 class Reservation < ApplicationRecord
-  has_many :tickets
+  has_many :tickets, dependent: :destroy
   belongs_to :ticket_desk
   belongs_to :client
   belongs_to :seance
