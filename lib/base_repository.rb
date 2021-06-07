@@ -13,10 +13,6 @@ class BaseRepository
     adapter.find(id)
   end
 
-  # def fetch_with_columns(columns:, filter:)
-  #   adapter.where(filter).select(*columns)
-  # end
-
   def create(params)
     adapter.create(params)
   end

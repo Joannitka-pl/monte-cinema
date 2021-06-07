@@ -1,7 +1,7 @@
 module Seances
   module Representers
     class List
-      attr_reader :seances, :movie
+      attr_reader :seances
 
       def initialize(seances)
         @seances = seances
