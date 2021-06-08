@@ -18,5 +18,15 @@ module Reservations
           }
       end
     end
+
+    def extended
+      basic.merge(tickets: tickets)
+    end
+
+    private
+
+    def tickets
+      Tickets::Representers::List.new(reservation.tickets).basic
+    end
   end
 end

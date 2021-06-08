@@ -9,11 +9,21 @@ class ReservationsController < ApplicationController
 
   def show
     @reservation = Reservations::UseCases::Show.new.call(id: params[:id])
-    render json: Reservations::Representers::Single.new(@reservation).basic
+    render json: Reservations::Representers::Single.new(@reservation).extended
   end
 
-  def create
-    @reservation = Reservations::UseCases::Create.new.call(params: reservation_params)
+  def create_online
+    @reservation = Reservations::UseCases::CreateOnline.new.call(params: reservation_params)
+
+    if @reservation.valid?
+      render json: @reservation, status: :created
+    else
+      render json: @reservation.errors, status: :unprocessable_entity
+    end
+  end
+
+  def create_offline
+    @reservation = Reservations::UseCases::CreateOffline.new.call(params: reservation_params)
 
     if @reservation.valid?
       render json: @reservation, status: :created

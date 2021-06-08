@@ -1,14 +1,17 @@
 module Tickets
   module UseCases
     class Create
-      attr_reader :repository
+      attr_reader :tickets, :reservation
 
-      def initialize(repository: Tickets::Repository.new)
-        @repository = repository
+      def initialize(reservation:, tickets: [])
+        @tickets = tickets
+        @reservation = reservation
       end
 
-      def call(params:)
-        repository.create(params)
+      def call
+        tickets.each do |ticket|
+          @reservation.tickets.create(ticket)
+        end
       end
     end
   end
