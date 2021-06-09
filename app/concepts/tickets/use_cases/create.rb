@@ -9,7 +9,7 @@ module Tickets
       end
 
       def call
-        tickets.each do |ticket|
+        tickets.to_a.each do |ticket|
           @reservation.tickets.create(ticket)
         end
       end
