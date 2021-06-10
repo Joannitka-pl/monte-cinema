@@ -20,7 +20,7 @@ module Tickets
       end
 
       def reservation
-        Reservations::Representers::List.new(ticket).basic
+        Reservations::Representers::List.new(ticket.reservation).basic
       end
     end
   end
