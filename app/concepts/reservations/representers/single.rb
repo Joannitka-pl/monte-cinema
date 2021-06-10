@@ -17,16 +17,16 @@ module Reservations
             seat: reservation.seat
           }
       end
-    end
 
-    def extended
-      basic.merge(tickets: tickets)
-    end
+      def extended
+        basic.merge(tickets: tickets)
+      end
 
-    private
+      private
 
-    def tickets
-      Tickets::Representers::List.new(reservation.tickets).basic
+      def tickets
+        Tickets::Representers::List.new(reservation.tickets).basic
+      end
     end
   end
 end

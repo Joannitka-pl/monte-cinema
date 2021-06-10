@@ -1,17 +1,15 @@
 module Tickets
   module UseCases
     class Create
-      attr_reader :tickets, :reservation
+      attr_reader :ticket_params, :reservation
 
-      def initialize(reservation:, tickets: [])
-        @tickets = tickets
+      def initialize(reservation:, ticket_params: )
+        @ticket_params = ticket_params
         @reservation = reservation
       end
 
       def call
-        tickets.to_a.each do |ticket|
-          @reservation.tickets.create(ticket)
-        end
+          @reservation.ticket.create!(ticket_params)
       end
     end
   end

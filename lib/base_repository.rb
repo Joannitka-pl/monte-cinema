@@ -13,7 +13,7 @@ class BaseRepository
     adapter.find(id)
   end
 
-  def create(params)
+  def create!(params)
     adapter.create(params)
   end
 
