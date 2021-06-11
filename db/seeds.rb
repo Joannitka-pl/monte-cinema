@@ -23,9 +23,9 @@ movie_1 = Movie.create!(id: 11, title: "Matrix", age_limit: 18, duration: 160)
 movie_2 = Movie.create!(id: 12, title: "Titanic", age_limit: 10, duration: 90)
 movie_3 = Movie.create!(id: 13, title: "Shrek", age_limit: 10, duration: 100)
 
-seance_1 = Seance.create!(id: 1, date: '10/05/2021', time: "10:00", hall_id: hall_1.id, movie_id: movie_1.id)
-seance_2 = Seance.create!(id: 2, date: '13/05/2021', time: "12:00", hall_id: hall_2.id, movie_id: movie_1.id)
-seance_3 = Seance.create!(id: 3, date: '20/05/2021', time: "14:00", hall_id: hall_3.id, movie_id: movie_3.id) 
+seance_1 = Seance.create!(id: 1, date: '2021-06-11 20:40:00', hall_id: hall_1.id, movie_id: movie_1.id)
+seance_2 = Seance.create!(id: 2, date: '2021-06-11 10:00:00', hall_id: hall_2.id, movie_id: movie_1.id)
+seance_3 = Seance.create!(id: 3, date: '2021-06-11 12:30:00', hall_id: hall_3.id, movie_id: movie_3.id) 
 
 client_1 = Client.create!(id: 1, name: "Jan kowalski", email: "jankowalski@mail.com", age:20, real_user: true)
 client_2 = Client.create!(id: 2, name: "Anna Nowak", email: "annanowak@mail.com", age:21, real_user: true)

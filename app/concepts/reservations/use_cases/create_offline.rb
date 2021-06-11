@@ -1,14 +1,9 @@
 module Reservations
   module UseCases
-    class CreateOffline
-      attr_reader :repository
-
-      def initialize(repository: Reservations::Repository.new)
-        @repository = repository
-      end
-
+    class CreateOffline < Reservations::UseCases::CreateReservationWithTickets
       def call(params:)
-        repository.create(params)
+        super
+        @reservation
       end
     end
   end
