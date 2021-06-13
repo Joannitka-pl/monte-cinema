@@ -14,7 +14,8 @@ module Reservations
           @reservation = @repository.create!(reservation_params)
           Tickets::UseCases::Create.new(reservation: @reservation, ticket_params: ticket_params).call
 
-          CancelReservationJob.set(wait_until: seance_expiry_time).perform_later(@reservation.id)
+          CancelReservationJob.set(wait_until: seance_expiry_time).perform_later(@reservation.id) unless @reservation.status == "paid"
+
         end
       end
 
