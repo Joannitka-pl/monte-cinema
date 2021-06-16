@@ -27,7 +27,7 @@ seance_1 = Seance.create!(id: 1, date: '10/05/2021 10:00', hall_id: hall_1.id, m
 seance_2 = Seance.create!(id: 2, date: '13/05/2021 12:00', hall_id: hall_2.id, movie_id: movie_1.id)
 seance_3 = Seance.create!(id: 3, date: '20/05/2021 14:00', hall_id: hall_3.id, movie_id: movie_3.id) 
 
-client_1 = Client.create!(id: 1, name: "Jan kowalski", email: "jankowalski@mail.com", age:20, real_user: true)
+client_1 = Client.create!(id: 1, name: "Joanna", email: "joanna.wroblewska@monterail.com", age:20, real_user: false)
 client_2 = Client.create!(id: 2, name: "Anna Nowak", email: "annanowak@mail.com", age:21, real_user: true)
 client_3 = Client.create!(id: 3, name: " Piotr Cybulski", email: "piotrcybulski@mail.com", age:12, real_user: false)
 
