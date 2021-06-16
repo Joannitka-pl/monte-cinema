@@ -16,10 +16,10 @@ RSpec.describe ClientMailer, type: :mailer do
 
     it 'renders the body' do
       expect(mail.text_part.body.to_s).to include(
-        "Your reservation: #{reservation.id} for #{movie.title} has been succesfull."
+        "Your reservation was succesfull and your tickets are waiting for you to be picked up at the cinema."
       )
       expect(mail.html_part.body.to_s).to include(
-        "Your reservation: #{reservation.id} for #{movie.title} has been succesfull."
+        "Your reservation was succesfull and your tickets are waiting for you to be picked up at the cinema."
       )
     end
 
@@ -27,7 +27,7 @@ RSpec.describe ClientMailer, type: :mailer do
       assert_emails 1 do
         mail.deliver_now
       end
-      expect(ActionMailer::Base.deliveries.first.subject).to eq('Reservation done')
+      expect(ActionMailer::Base.deliveries.first.subject).to eq('Your reservation to Monte Cinema is confirmed.')
     end
   end
 end
