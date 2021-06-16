@@ -8,7 +8,7 @@ module TicketDesks
       end
 
       def call(params:)
-        repository.create(params)
+        repository.create!(params)
       end
     end
   end

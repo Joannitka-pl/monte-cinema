@@ -12,7 +12,6 @@ module Seances
           {
             id: seance.id,
             date: seance.date,
-            time: seance.time,
             movie_id: seance.movie_id,
             hall_id: seance.hall_id
           }
