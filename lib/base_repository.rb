@@ -14,7 +14,7 @@ class BaseRepository
   end
 
   def create!(params)
-    adapter.create(params)
+    adapter.create!(params)
   end
 
   def update(id, params)

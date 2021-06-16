@@ -9,7 +9,7 @@ module Tickets
       end
 
       def call
-        @reservation.seat.split(', ').each do |seat|
+        @reservation.seat.split(",").map(&:strip).each do |seat|
             @reservation.tickets.create!(ticket_params)
         end
       end
