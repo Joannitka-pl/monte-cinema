@@ -3,8 +3,8 @@ module Reservations
     class CreateOnline < Reservations::UseCases::CreateReservationWithTickets
       def call(params:)
         super
-        @reservation
         cancel_expired_reservation
+        @reservation
       end
 
       private
