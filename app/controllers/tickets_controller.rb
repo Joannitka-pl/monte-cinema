@@ -8,8 +8,8 @@ class TicketsController < ApplicationController
   end
 
   def show
-    @ticket = Ticket::UseCases::Show.new.call(id: params[:id])
-    render json: Tickets::Representers::Single.new(@ticket).basic
+    @ticket = Tickets::UseCases::Show.new.call(id: params[:id])
+    render json: Tickets::Representers::Single.new(@ticket).extended
   end
 
   def create
