@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+before_action :authenticate_user!
+
 class ReservationsController < ApplicationController
   
   def index
