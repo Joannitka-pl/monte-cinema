@@ -6,19 +6,20 @@ RSpec.describe ClientMailer, type: :mailer do
   describe 'reservation_confirmation_email' do
     let!(:client) { create :client }
     let!(:reservation) { create(:reservation) }
-    let!(:mail) { ClientMailer.reservation_confirmation_email(reservation: reservation, email: client.email) }
-
+    let(:params) { { email: client.email, name: client.name } }
+    let!(:mail) { ClientMailer.reservation_confirmation_email(reservation: reservation, params: params) }
+    
     it 'renders the header' do
       expect(mail.subject).to eq('Your reservation to Monte Cinema is confirmed.')
-      expect(mail.to).to eq(['fakeemail@mail.com'])
+      expect(mail.to).to eq([client.email])
       expect(mail.from).to eq(['info@example.com'])
     end
 
     it 'renders the body' do
-      expect(mail.text_part.body.to_s).to include(
+      expect(mail.body.to_s).to include(
         "Your reservation was succesfull and your tickets are waiting for you to be picked up at the cinema."
       )
-      expect(mail.html_part.body.to_s).to include(
+      expect(mail.body.to_s).to include(
         "Your reservation was succesfull and your tickets are waiting for you to be picked up at the cinema."
       )
     end

@@ -1,6 +1,6 @@
 class ClientMailer < ApplicationMailer
 
-  def reservation_confirmation_email(reservation:)
+  def reservation_confirmation_email(reservation:, params:)
     @reservation = reservation
     @email = params[:email]
     @name = params[:name]
