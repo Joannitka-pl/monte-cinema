@@ -38,7 +38,3 @@ ticket_desk_2 = TicketDesk.create!(id: 2, category: "online", number: 0)
 reservation_1 = Reservation.create!(id: 1, status: "confirmed", seance_id: seance_1.id, ticket_desk_id: ticket_desk_1.id, client_id: client_1.id, seat: "A4")
 reservation_2 = Reservation.create!(id: 2, status: "confirmed", seance_id: seance_2.id, ticket_desk_id: ticket_desk_2.id, client_id: client_2.id, seat: "B5")
 reservation_3 = Reservation.create!(id: 3, status: "canceled", seance_id: seance_3.id, ticket_desk_id: ticket_desk_1.id, client_id: client_3.id, seat: "C8")
-
-# ticket_1 = Ticket.create!(id: 1, sort: "full", price: 30, reservation_id: reservation_1.id)
-# ticket_2 = Ticket.create!(id: 2, sort: "discounted", price: 20, reservation_id: reservation_2.id)
-# ticket_3 = Ticket.create!(id: 3, sort: "full", price: 32, reservation_id: reservation_3.id)

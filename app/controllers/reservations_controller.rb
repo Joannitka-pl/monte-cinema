@@ -5,6 +5,7 @@ before_action :authenticate_user!
 class ReservationsController < ApplicationController
   
   def index
+    authorize Reservation
     @reservations = Reservations::UseCases::FetchAll.new.call
     render json: Reservations::Representers::List.new(@reservations).basic
   end
@@ -26,7 +27,7 @@ class ReservationsController < ApplicationController
 
   def create_offline
     @reservation = Reservations::UseCases::CreateOffline.new.call(params: reservation_params)
-
+    
     if @reservation.valid?
       render json: @reservation, status: :created
     else

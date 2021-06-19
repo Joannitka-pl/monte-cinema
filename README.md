@@ -7,7 +7,7 @@ Functional requirements:
 - [x] When reservation is created (tickets, seats and price should be attached)
 - [ ] When reservation is terminated (the reason should be attached)
 - [x] Creating reservation should be robust and there should be validations (for instance - for already taken seats etc., consider edge cases). 
-- [ ] Application should have implemented authentication (there should be logging by user and by employer)
+- [x] Application should have implemented authentication (there should be logging by user and by employer)
 - [ ] Application should have authorization in terms of role-based separation
 - [ ] Regular user should have ability to create only online reservation
 - [ ] Employer should have ability to create online reservation but also offline reservation
