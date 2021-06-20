@@ -20,7 +20,7 @@ module Reservations
         @seance.date - 30.minutes
       end
 
-      def send_confirmation_email
+      def send_confirmation_email(params:)
         client = Clients::Repository.new.show(@reservation.client_id)
 
         ClientMailer.with(client).reservation_confirmation_email(reservation: @reservation).deliver_now!
