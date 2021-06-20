@@ -13,6 +13,10 @@ class BaseRepository
     adapter.find(id)
   end
 
+  def create(params)
+    adapter.create(params)
+  end
+
   def create!(params)
     adapter.create!(params)
   end
