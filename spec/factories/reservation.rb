@@ -4,8 +4,8 @@ FactoryBot.define do
     association :seance
     association :ticket_desk
     status { "confirmed" }
-    seat {"G9"}
-
+    sequence(:seat) { |n| "G #{n}" }
+    
     trait :canceled do
       status { "canceled" }
     end
