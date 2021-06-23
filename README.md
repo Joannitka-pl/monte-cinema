@@ -8,17 +8,17 @@ Functional requirements:
 - [ ] When reservation is terminated (the reason should be attached)
 - [x] Creating reservation should be robust and there should be validations (for instance - for already taken seats etc., consider edge cases). 
 - [x] Application should have implemented authentication (there should be logging by user and by employer)
-- [ ] Application should have authorization in terms of role-based separation
-- [ ] Regular user should have ability to create only online reservation
-- [ ] Employer should have ability to create online reservation but also offline reservation
+- [x] Application should have authorization in terms of role-based separation
+- [x] Regular user should have ability to create only online reservation
+- [x] Employer should have ability to create online reservation but also offline reservation
 
 Not functional requirements:
 - [ ] API should be documented 
-- [ ] Application should have provided seeds and should be generally operational
-- [ ] At least 80% of tests coverage
+- [x] Application should have provided seeds and should be generally operational
+- [x] At least 80% of tests coverage
 - [ ] Application should have connected Sentry and CircleCI
 - [ ] Application should be accessible publicly (for instance by Heroku)
-- [ ] Application should have configured rubocop and should fulfill all rubocop requirements.
+- [x] Application should have configured rubocop and should fulfill all rubocop requirements.
 
 Nice to have:
 - [ ] JSON:API endpoint
