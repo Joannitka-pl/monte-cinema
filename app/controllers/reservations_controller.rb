@@ -1,18 +1,21 @@
 # frozen_string_literal: true
-
 class ReservationsController < ApplicationController
+before_action :authenticate_user!
   
   def index
-    @reservations = Reservations::UseCases::FetchAll.new.call
+    authorize Reservation
+    @reservations = policy_scope(Reservations::UseCases::FetchAll.new.call)
     render json: Reservations::Representers::List.new(@reservations).basic
   end
 
   def show
     @reservation = Reservations::UseCases::Show.new.call(id: params[:id])
+    authorize @reservation
     render json: Reservations::Representers::Single.new(@reservation).extended
   end
 
   def create_online
+    authorize Reservation
     @reservation = Reservations::UseCases::CreateOnline.new.call(params: reservation_params)
 
     if @reservation.valid?
@@ -23,8 +26,9 @@ class ReservationsController < ApplicationController
   end
 
   def create_offline
+    authorize Reservation
     @reservation = Reservations::UseCases::CreateOffline.new.call(params: reservation_params)
-
+    
     if @reservation.valid?
       render json: @reservation, status: :created
     else
@@ -43,7 +47,7 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-    Reservations::UseCases::Destroy.new.call(id: params[:id])
+    @reservation = Reservations::UseCases::Destroy.new.call(id: params[:id])
   end
 
   private
