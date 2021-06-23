@@ -53,3 +53,5 @@ gem 'rubocop', require:false
 gem 'simplecov', require: false, group: :test
 gem 'sidekiq'
 
+gem 'apitome'
+gem 'rspec_api_documentation'
