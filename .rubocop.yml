@@ -1,0 +1,12 @@
+require:
+  - rubocop-rspec
+  - rubocop-rails
+
+AllCops:
+  NewCops: disable
+
+Layout/EmptyLineAfterMagicComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
