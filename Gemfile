@@ -12,9 +12,19 @@ gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 
+gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'devise-jwt'
 gem 'pundit'
+gem 'sentry-rails'
+gem 'sentry-ruby'
+gem 'sidekiq'
+
+# printing Ruby objects in a pretty way
+gem 'awesome_print', '~> 1.9.2'
+
+# qr code encoder
+gem 'rqrcode', '~> 2.1.1'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
@@ -25,11 +35,6 @@ gem 'pundit'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-
-gem 'bootsnap', '>= 1.4.4', require: false
-gem 'sentry-rails'
-gem 'sentry-ruby'
-gem 'sidekiq'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
