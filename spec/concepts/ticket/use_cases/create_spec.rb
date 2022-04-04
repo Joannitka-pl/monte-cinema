@@ -60,6 +60,10 @@ RSpec.describe Tickets::UseCases::Create do
         create_tickets
       end
 
+      it 'generates 12 bytes long random key' do
+        expect(generate_key_mock.base64(12).bytesize).to eq(16)
+      end
+
       it 'saves generated key into db ticket table' do
         expect(Ticket.order('created_at').last.key).to eq(key)
       end
