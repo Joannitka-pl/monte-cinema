@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 2022_04_02_170520) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "seat"
-    t.string "key"
+    t.string "key", default: "================", null: false
     t.index ["reservation_id"], name: "index_tickets_on_reservation_id"
   end
 
