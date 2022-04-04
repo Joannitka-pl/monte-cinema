@@ -49,13 +49,19 @@ RSpec.describe Tickets::UseCases::Create do
           }
         ]
       end
+      let(:key) { 'di2839d-k>k2gsi8' }
+      let(:generate_key_mock) { SecureRandom }
 
       before do
+        allow(generate_key_mock)
+          .to receive(:base64)
+          .with(12)
+          .and_return(key)
         create_tickets
       end
 
       it 'saves generated key into db ticket table' do
-        expect(Ticket.order('created_at').last.key).to be_a_kind_of(String)
+        expect(Ticket.order('created_at').last.key).to eq(key)
       end
     end
   end
