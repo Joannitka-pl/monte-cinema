@@ -53,6 +53,6 @@ before_action :authenticate_user!
   private
 
   def reservation_params
-    params.require(:reservation).permit(:status, :client_id, :ticket_desk_id, :seance_id, :seat, :sort, :price)
+    params.require(:reservation).permit(:status, :client_id, :ticket_desk_id, :seance_id, :sort, :price)
   end
 end
