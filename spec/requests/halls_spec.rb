@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe 'Halls requests' do
+RSpec.describe 'Halls', type: :request do
   let(:hall) { Hall.create!(number: '1', capacity: 500) }
 
   describe 'GET /halls' do

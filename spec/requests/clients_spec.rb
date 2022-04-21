@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe 'Clients requests' do
+RSpec.describe 'Clients', type: :request do
   let(:client) { Client.create!(name: 'Jan Kowalski', age: 20, email: 'example@example.com', real_user: false) }
 
   describe 'GET /clients' do

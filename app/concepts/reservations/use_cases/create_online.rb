@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Reservations
   module UseCases
     class CreateOnline < Reservations::UseCases::CreateReservationWithTickets
@@ -11,9 +13,9 @@ module Reservations
       private
 
       def cancel_expired_reservation
-        unless @reservation.status == 'paid'
-          CancelReservationJob.set(wait_until: seance_expiry_time).perform_later(@reservation.id)
-        end
+        return if @reservation.status == 'paid'
+
+        CancelReservationJob.set(wait_until: seance_expiry_time).perform_later(@reservation.id)
       end
 
       def seance_expiry_time

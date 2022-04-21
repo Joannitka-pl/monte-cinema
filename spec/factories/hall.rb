@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :hall do
     sequence(:number) { |n| n + 1 }

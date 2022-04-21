@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'spec_helper'
 
-RSpec.describe 'CancelReservation', type: :job do
+RSpec.describe CancelReservationJob, type: :job do
   describe '#perform_later' do
     let(:destroy_use_case) { instance_double(Reservations::UseCases::Destroy, call: true) }
 
@@ -13,8 +15,8 @@ RSpec.describe 'CancelReservation', type: :job do
     end
 
     it 'calls destroy usecase' do
-      expect(Reservations::UseCases::Destroy).to receive(:new).and_return(destroy_use_case)
-      expect(destroy_use_case).to receive(:call).with(id: 'reservation')
+      expect(Reservations::UseCases::Destroy).to have_received(:new).and_return(destroy_use_case)
+      expect(destroy_use_case).to have_received(:call).with(id: 'reservation')
 
       CancelReservationJob.perform_now('reservation')
     end

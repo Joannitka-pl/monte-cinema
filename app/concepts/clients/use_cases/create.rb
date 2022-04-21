@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Clients
   module UseCases
     class Create

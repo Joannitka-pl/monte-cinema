@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe 'Seances requests' do
+RSpec.describe 'Seances', type: :request do
   let(:hall) { Hall.create!(number: '1', capacity: 500) }
   let(:movie) { Movie.create!(title: 'Start Wars', age_limit: '18', duration: '200') }
   let(:seance) { Seance.create!(date: '20/10/2020 10:00', hall_id: hall.id, movie_id: movie.id) }

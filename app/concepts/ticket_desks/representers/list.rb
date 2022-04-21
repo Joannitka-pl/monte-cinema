@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TicketDesks
   module Representers
     class List

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe 'TicketDesk requests' do
+RSpec.describe 'TicketDesk', type: :request do
   let(:ticket_desk) { TicketDesk.create!(category: 'offline', number: '1') }
 
   describe 'GET /ticket_desks' do
