@@ -3,10 +3,32 @@ require:
   - rubocop-rails
 
 AllCops:
+  Exclude:
+    - 'config.ru'
+    - 'Rakefile'
+    - 'db/migrate/*'
+    - 'db/schema.rb'
+    - 'config/**/*'
+    - 'bin/*'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
   NewCops: disable
+
+Metrics/BlockLength:
+  Exclude:
+  - 'bin/*'
+  - 'node_modules/**/*'
+  - 'db/**/*'
+  - spec/**/*.rb
 
 Layout/EmptyLineAfterMagicComment:
   Enabled: false
 
 Style/Documentation:
   Enabled: false
+
+RSpec/FilePath:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: No
