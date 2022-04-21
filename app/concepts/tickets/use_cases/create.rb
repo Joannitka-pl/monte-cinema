@@ -17,7 +17,7 @@ module Tickets
       private
 
       def generate_key
-        SecureRandom.base64(12)
+        SecureRandom.base64(32)
       end
     end
   end

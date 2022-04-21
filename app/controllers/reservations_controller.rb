@@ -1,7 +1,8 @@
 # frozen_string_literal: true
+
 class ReservationsController < ApplicationController
-before_action :authenticate_user!
-  
+  before_action :authenticate_user!
+
   def index
     authorize Reservation
     @reservations = policy_scope(Reservations::UseCases::FetchAll.new.call)
@@ -28,7 +29,7 @@ before_action :authenticate_user!
   def create_offline
     authorize Reservation
     @reservation = Reservations::UseCases::CreateOffline.new.call(params: reservation_params)
-    
+
     if @reservation.valid?
       render json: @reservation, status: :created
     else
@@ -53,6 +54,7 @@ before_action :authenticate_user!
   private
 
   def reservation_params
-    params.require(:reservation).permit(:status, :client_id, :ticket_desk_id, :seance_id, :sort, :price)
+    params.require(:reservation).permit(:status, :client_id, :ticket_desk_id, :seance_id,
+                                        tickets: %i[sort price seat])
   end
 end

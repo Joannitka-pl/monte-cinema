@@ -5,12 +5,25 @@
   <body>
     <h1>Dear <%=@name%>, </h1>
     <p>
-      Your reservation was succesfull and your tickets are waiting for you to be picked up at the cinema.
-      Please make sure to pick them up 30 minutes before the seance.
-      Your seats are: <%=@reservation.seat %>
+      We would like to confirm that your reservation number <%=@reservation.id%> 
+      was succesfull. 
+      <p>
+      Please find your tickets below.
+    <p>
+      Please make sure to confirm your reservation 30 minutes before the seance at the ticket desk.
     </p>
     <p>
       Enjoy the movie! <%= @url %>.
+    </p>
+    <p>
+    <% @reservation.tickets.map do |ticket| %>
+    Your seat is: 
+    <%= ticket.seat %>
+    </p>
+    <p>
+      <%  @qr_code = ::Tickets::UseCases::GenerateQrCode.new.call(ticket.id) %>
+       <%= raw @qr_code.as_svg %>
+  <% end %>
     </p>
     <p>Thanks for joining Monterail Cinema and have a great day!</p>
   </body>

@@ -49,19 +49,14 @@ RSpec.describe Tickets::UseCases::Create do
           }
         ]
       end
-      let(:key) { 'di2839d-k>k2gsi8' }
-      let(:generate_key_mock) { SecureRandom }
+      let(:key) { 'UZLdOkzop70Ddx-IJR0ABgdi2839d-k>k2gsi88djw' }
 
       before do
-        allow(generate_key_mock)
+        allow(SecureRandom)
           .to receive(:base64)
-          .with(12)
+          .with(32)
           .and_return(key)
         create_tickets
-      end
-
-      it 'generates 12 bytes long random key' do
-        expect(generate_key_mock.base64(12).bytesize).to eq(16)
       end
 
       it 'saves generated key into db ticket table' do
