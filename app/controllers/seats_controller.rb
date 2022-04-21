@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class SeatsController < ApplicationController
-  
   def index
     @seats = Seats::UseCases::FetchAll.new.call
     render json: Seats::Representers::List.new(@seats).basic

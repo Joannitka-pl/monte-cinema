@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ClientsController < ApplicationController
-  
   def index
     @clients = Clients::UseCases::FetchAll.new.call
     render json: Clients::Representers::List.new(@clients).basic

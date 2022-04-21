@@ -9,18 +9,17 @@ module Seances
       end
 
       def basic
-          {
-            id: seance.id,
-            date: seance.date,
-            movie_id: seance.movie_id,
-            hall_id: seance.hall_id
-          }
+        {
+          id: seance.id,
+          date: seance.date,
+          movie_id: seance.movie_id,
+          hall_id: seance.hall_id
+        }
       end
 
       def extended
-          basic.merge(seats)
+        basic.merge(seats)
       end
-
     end
   end
 end

@@ -13,19 +13,11 @@ class BaseRepository
     adapter.find(id)
   end
 
-  def create(params)
-    adapter.create(params)
-  end
+  delegate :create, to: :adapter
 
-  def create!(params)
-    adapter.create!(params)
-  end
+  delegate :create!, to: :adapter
 
-  def update(id, params)
-    adapter.update(id, params)
-  end
+  delegate :update, to: :adapter
 
-  def destroy(id)
-    adapter.destroy(id)
-  end
+  delegate :destroy, to: :adapter
 end

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class HallsController < ApplicationController
-  
   def index
     @halls = Halls::UseCases::FetchAll.new.call
     render json: Halls::Representers::List.new(@halls).basic

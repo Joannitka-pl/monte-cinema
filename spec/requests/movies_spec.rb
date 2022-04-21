@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Movies requests' do
-
   let!(:movie) { Movie.create(title: 'Start Wars', age_limit: '18', duration: '200') }
 
   describe 'GET /movies' do
@@ -20,7 +19,7 @@ RSpec.describe 'Movies requests' do
 
   describe 'POST /movies' do
     it 'returns status 201' do
-      post("/movies", params: { movie: {  title: 'Lost', age_limit: '18', duration: '200' } })
+      post('/movies', params: { movie: { title: 'Lost', age_limit: '18', duration: '200' } })
       expect(response.status).to eq(201)
     end
   end

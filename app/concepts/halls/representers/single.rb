@@ -8,11 +8,11 @@ module Halls
       end
 
       def basic
-          {
-            id: hall.id,
-            number: hall.number,
-            capacity: hall.capacity
-          }
+        {
+          id: hall.id,
+          number: hall.number,
+          capacity: hall.capacity
+        }
       end
     end
   end

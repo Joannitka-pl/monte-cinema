@@ -3,10 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Seances::Repository do
-  let(:instance) { Seances::Repository.new }
+  let(:instance) { described_class.new }
 
   describe 'reservation repository' do
-
     let(:date) { create :date }
     let(:movie) { create :movie }
     let(:hall) { create :hall }

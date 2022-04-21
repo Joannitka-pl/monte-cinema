@@ -3,10 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Reservations::Repository do
-  let(:instance) { Reservations::Repository.new }
+  let(:instance) { described_class.new }
 
   describe 'reservation repository' do
-
     let(:client) { create :client }
     let(:seance) { create :seance }
     let(:ticket_desk) { create :ticket_desk }

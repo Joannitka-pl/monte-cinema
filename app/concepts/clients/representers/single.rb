@@ -8,13 +8,13 @@ module Clients
       end
 
       def basic
-          {
-            id: client.id,
-            name: client.name,
-            age: client.age,
-            email: client.email,
-            real_user: client.real_user
-          }
+        {
+          id: client.id,
+          name: client.name,
+          age: client.age,
+          email: client.email,
+          real_user: client.real_user
+        }
       end
     end
   end
