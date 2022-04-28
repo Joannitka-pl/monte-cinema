@@ -17,6 +17,6 @@ Rails.application.routes.draw do
   end
 
   resources :tickets do
-    get 'validate ticket', on: :validate_ticket
+    get '/validate ticket', to: 'tickets#validate_ticket'
   end
 end

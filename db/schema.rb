@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_02_170520) do
+ActiveRecord::Schema.define(version: 2022_04_28_084908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2022_04_02_170520) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "seat"
     t.string "key", default: "================", null: false
+    t.boolean "used", default: false, null: false
     t.index ["reservation_id"], name: "index_tickets_on_reservation_id"
   end
 
