@@ -15,4 +15,8 @@ Rails.application.routes.draw do
       post '/offline', to: 'reservations#create_offline'
     end
   end
+
+  resources :tickets do
+    get 'validate ticket', on: :validate_ticket
+  end
 end
