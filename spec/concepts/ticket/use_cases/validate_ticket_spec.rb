@@ -44,7 +44,7 @@ RSpec.describe Tickets::UseCases::ValidateTicket do
       end
 
       it 'updates ticket' do
-        expect { validate_ticket }.to change(ticket, :used).from(false).to(true)
+        expect { validate_ticket }.to change { ticket.reload.used }.from(false).to(true)
       end
     end
   end
