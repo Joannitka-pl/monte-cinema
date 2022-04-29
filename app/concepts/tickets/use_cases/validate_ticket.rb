@@ -10,32 +10,32 @@ module Tickets
       end
 
       def call
-        check_ticket_date(received_ticket_id)
+        check_ticket_date!(received_ticket_id)
         validate_ticket
       end
 
       private
 
-      def check_ticket_date(received_ticket_id)
-        ticket = repository.show(received_ticket_id)
+      def check_ticket_date!(received_ticket_id)
+        ticket = Tickets::Repository.new.show(received_ticket_id)
         raise TicketDateExpired unless DateTime.now < ticket.reservation.seance.date + 1.hour
       end
 
       def validate_ticket
-        ticket = repository.show(received_ticket_id)
-        raise QrCodeNotValid unless validate_qr_code.true?
-        raise TicketAlreadyUsed unless ticket.used.false?
+        ticket = Tickets::Repository.new.show(received_ticket_id)
+        raise QrCodeNotValid unless validate_qr_code(ticket) == true
+        raise TicketAlreadyUsed unless ticket.used == false
 
-        update_ticket
+        update_ticket(ticket.id)
         true
       end
 
-      def update_ticket
-        Tickets::UseCases::Update.new.mark_as_used(id: params[:id], used: true)
+      def update_ticket(id)
+        Tickets::UseCases::Update.new.mark_as_used(id: id)
       end
 
-      def validate_qr_code
-        received_ticket_id == ticket.id || received_key == ticket.key
+      def validate_qr_code(ticket)
+        received_ticket_id == ticket.id && received_key == ticket.key
       end
 
       def received_ticket_id

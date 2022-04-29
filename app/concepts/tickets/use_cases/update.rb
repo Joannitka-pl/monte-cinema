@@ -13,8 +13,8 @@ module Tickets
         repository.update(id, params)
       end
 
-      def mark_as_used(id:, used:)
-        repository.update(id, used)
+      def mark_as_used(id:)
+        repository.update(id, used: true)
       end
     end
   end
