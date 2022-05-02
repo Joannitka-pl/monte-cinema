@@ -3,9 +3,14 @@
 class User < ApplicationRecord
   include Devise::JWT::RevocationStrategies::JTIMatcher
 
-  has_many :reservations
+  has_many :reservations, dependent: :destroy
 
-  enum role: { admin: 1, employee: 2, user: 3 }
+  enum role: {
+    user: 0,
+    usher: 1,
+    employee: 2,
+    admin: 3
+  }
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
