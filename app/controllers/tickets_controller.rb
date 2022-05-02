@@ -38,7 +38,6 @@ class TicketsController < ApplicationController
   end
 
   def validate_ticket
-    # TODO_authorize_user
     Tickets::UseCases::ValidateTicket.new(params: ticket_validation_params).call
   end
 
