@@ -21,7 +21,7 @@ module Tickets
         raise TicketDateExpired unless DateTime.now < ticket.reservation.seance.date + 1.hour
       end
 
-      def validate_ticket
+      def validate_ticket!
         ticket = Tickets::Repository.new.show(received_ticket_id)
         raise QrCodeNotValid unless validate_qr_code(ticket)
         raise TicketAlreadyUsed if ticket.used
