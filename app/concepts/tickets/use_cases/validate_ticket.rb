@@ -23,8 +23,8 @@ module Tickets
 
       def validate_ticket
         ticket = Tickets::Repository.new.show(received_ticket_id)
-        raise QrCodeNotValid unless validate_qr_code(ticket) == true
-        raise TicketAlreadyUsed unless ticket.used == false
+        raise QrCodeNotValid unless validate_qr_code(ticket)
+        raise TicketAlreadyUsed if ticket.used
 
         update_ticket(ticket.id)
         true
