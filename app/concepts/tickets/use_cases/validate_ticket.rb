@@ -11,7 +11,7 @@ module Tickets
 
       def call
         check_ticket_date!(received_ticket_id)
-        validate_ticket
+        validate_ticket!
       end
 
       private
