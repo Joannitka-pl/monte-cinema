@@ -29,7 +29,7 @@ module Tickets
         Tickets::UseCases::Update.new.mark_as_used(id: id)
       end
 
-      def validate_qr_code(ticket)
+      def qr_code_valid?(ticket)
         received_ticket_id == ticket.id && received_key == ticket.key
       end
 
