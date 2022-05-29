@@ -26,11 +26,6 @@ module Tickets
         raise QrCodeNotValid unless validate_qr_code(ticket)
         raise TicketAlreadyUsed if ticket.used
 
-        update_ticket(ticket.id)
-        true
-      end
-
-      def update_ticket(id)
         Tickets::UseCases::Update.new.mark_as_used(id: id)
       end
 
