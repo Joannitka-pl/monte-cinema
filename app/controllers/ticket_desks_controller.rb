@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class TicketDesksController < ApplicationController
-  
   def index
     @ticket_desks = TicketDesks::UseCases::FetchAll.new.call
     render json: TicketDesks::Representers::List.new(@ticket_desks).basic

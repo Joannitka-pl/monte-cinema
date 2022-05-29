@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TicketDesks
   module Representers
     class Single
@@ -8,10 +10,10 @@ module TicketDesks
       end
 
       def basic
-          {
-            id: ticket_desk.id,
-            category: ticket_desk.category
-          }
+        {
+          id: ticket_desk.id,
+          category: ticket_desk.category
+        }
       end
     end
   end

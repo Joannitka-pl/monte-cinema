@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class SeancesController < ApplicationController
-  
   def index
     @seances = Seances::UseCases::FetchAll.new.call
     render json: Seances::Representers::List.new(@seances).basic

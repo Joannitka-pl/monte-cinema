@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Reservations::Representers do
@@ -6,8 +8,7 @@ RSpec.describe Reservations::Representers do
     let(:reservation) { create :reservation }
     let(:seance) { create :seance }
 
-      describe 'basic representer' do
-
+    describe 'basic representer' do
       it 'displays proper params for basic view' do
         expect(instance.basic).to eq(
           {
@@ -22,8 +23,7 @@ RSpec.describe Reservations::Representers do
       end
     end
 
-      describe 'extended representer' do
-
+    describe 'extended representer' do
       it 'displays proper params for extended view' do
         expect(instance.extended).to eq(
           {

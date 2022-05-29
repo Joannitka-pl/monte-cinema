@@ -3,14 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe Reservations::UseCases::CreateReservationWithTickets do
-
   let(:instance) { described_class.new }
   let(:ticket_desk) { create :ticket_desk }
   let(:hall) { create :hall }
   let(:movie) { create :movie }
   let(:seance) { create :seance }
   let(:client) { create :client }
-  let(:params) do 
+  let(:params) do
     {
       status: 'confirmed',
       client_id: client.id,
@@ -26,7 +25,7 @@ RSpec.describe Reservations::UseCases::CreateReservationWithTickets do
 
   describe '.call' do
     it 'creates valid reservation' do
-      expect { subject }.to change { Reservation.count }.by(1)
+      expect { subject }.to change(Reservation, :count).by(1)
     end
   end
 end

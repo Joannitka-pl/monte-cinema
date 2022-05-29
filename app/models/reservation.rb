@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Reservation < ApplicationRecord
   has_many :tickets, dependent: :destroy
   belongs_to :ticket_desk
@@ -5,8 +7,7 @@ class Reservation < ApplicationRecord
   belongs_to :seance
   belongs_to :user, optional: true
 
-  validates :seat, uniqueness: true
-  validates :seat, presence: true
   validates_associated :tickets
-  validates :status, presence: true, inclusion: {in: %w(paid confirmed canceled), message: "%{status} is not a valid status"}
+  validates :status, presence: true,
+                     inclusion: { in: %w[paid confirmed canceled], message: '%{status} is not a valid status' }
 end

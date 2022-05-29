@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Tickets
   module Representers
     class Single
@@ -8,11 +10,11 @@ module Tickets
       end
 
       def basic
-          {
-            id: ticket.id,
-            sort: ticket.sort,
-            price: ticket.price
-          }
+        {
+          id: ticket.id,
+          sort: ticket.sort,
+          price: ticket.price
+        }
       end
 
       def extended

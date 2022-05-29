@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class MoviesController < ApplicationController
-  
   def index
     @movies = Movies::UseCases::FetchAll.new.call
     render json: Movies::Representers::List.new(@movies).basic

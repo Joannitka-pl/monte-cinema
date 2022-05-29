@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReservationPolicy
   attr_reader :user, :reservation
 
@@ -21,7 +23,6 @@ class ReservationPolicy
   def create_offline?
     user.admin?
   end
-
 
   class Scope
     attr_reader :user, :scope

@@ -1,17 +1,25 @@
+# frozen_string_literal: true
+
 module Tickets
   module UseCases
     class Create
-      attr_reader :ticket_params, :reservation
+      attr_reader :tickets, :reservation
 
-      def initialize(reservation:, ticket_params: )
-        @ticket_params = ticket_params
+      def initialize(reservation:, tickets:)
         @reservation = reservation
+        @tickets = tickets
       end
 
       def call
-        @reservation.seat.split(",").map(&:strip).each do |seat|
-            @reservation.tickets.create!(ticket_params)
+        tickets.map do |ticket|
+          reservation.tickets.create!(ticket.merge!(key: generate_key))
         end
+      end
+
+      private
+
+      def generate_key
+        SecureRandom.base64(32)
       end
     end
   end

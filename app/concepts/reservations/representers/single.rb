@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Reservations
   module Representers
     class Single
@@ -8,14 +10,14 @@ module Reservations
       end
 
       def basic
-          {
-            id: reservation.id,
-            status: reservation.status,
-            client_id: reservation.client_id,
-            ticket_desk_id: reservation.ticket_desk_id,
-            seance_id: reservation.seance_id,
-            seat: reservation.seat
-          }
+        {
+          id: reservation.id,
+          status: reservation.status,
+          client_id: reservation.client_id,
+          ticket_desk_id: reservation.ticket_desk_id,
+          seance_id: reservation.seance_id,
+          seat: reservation.seat
+        }
       end
 
       def extended

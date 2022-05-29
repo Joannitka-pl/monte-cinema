@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class TicketsController < ApplicationController
-  
   def index
     @tickets = Tickets::UseCases::FetchAll.new.call
     render json: Tickets::Representers::List.new(@tickets).basic
@@ -39,6 +38,6 @@ class TicketsController < ApplicationController
   private
 
   def ticket_params
-    params.require(:ticket).permit(:sort, :price, :reservation_id)
+    params.require(:ticket).permit(:sort, :price, :reservation_id, :seat)
   end
 end
