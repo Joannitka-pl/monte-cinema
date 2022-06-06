@@ -35,13 +35,16 @@ client_3 = Client.create!(id: 3, name: ' Piotr Cybulski', email: 'piotrcybulski@
 ticket_desk_1 = TicketDesk.create!(id: 1, category: 'offline', number: 1)
 ticket_desk_2 = TicketDesk.create!(id: 2, category: 'online', number: 0)
 
-reservation_1 = Reservation.create!(id: 1, status: 'confirmed', seance_id: seance_1.id,
-                                    ticket_desk_id: ticket_desk_1.id, client_id: client_1.id, user_id: 1)
-reservation_2 = Reservation.create!(id: 2, status: 'confirmed', seance_id: seance_2.id,
-                                    ticket_desk_id: ticket_desk_2.id, client_id: client_2.id, user_id: 1)
-reservation_3 = Reservation.create!(id: 3, status: 'canceled', seance_id: seance_3.id,
-                                    ticket_desk_id: ticket_desk_1.id, client_id: client_3.id, user_id: 2)
+ticket_1 = Ticket.new(id: 1, sort: 'regular', price: 20, seat: 'A1', key: 'ais73ueir902n.kd')
+ticket_2 = Ticket.new(id: 2, sort: 'regular', price: 20, seat: 'A2', key: 'gjfy27308ksuqisk')
+ticket_3 = Ticket.new(id: 3, sort: 'regular', price: 20, seat: 'A3', key: '4-ske,ci-=wlr9sx')
 
-Ticket.create!(id: 1, sort: 'regular', price: 20, reservation_id: reservation_1.id, seat: 'A1', key: 'ais73ueir902n.kd')
-Ticket.create!(id: 2, sort: 'regular', price: 20, reservation_id: reservation_2.id, seat: 'A2', key: 'gjfy27308ksuqisk')
-Ticket.create!(id: 3, sort: 'regular', price: 20, reservation_id: reservation_3.id, seat: 'A3', key: '4-ske,ci-=wlr9sx')
+Reservation.create!(id: 1, status: 'confirmed', seance_id: seance_1.id,
+                    ticket_desk_id: ticket_desk_1.id, client_id: client_1.id,
+                    user_id: 1, tickets: [ticket_1])
+Reservation.create!(id: 2, status: 'confirmed', seance_id: seance_2.id,
+                    ticket_desk_id: ticket_desk_2.id, client_id: client_2.id,
+                    user_id: 1, tickets: [ticket_1, ticket_2])
+Reservation.create!(id: 3, status: 'canceled', seance_id: seance_3.id,
+                    ticket_desk_id: ticket_desk_1.id, client_id: client_3.id,
+                    user_id: 2, tickets: [ticket_1, ticket_2, ticket_3])

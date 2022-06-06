@@ -8,6 +8,7 @@ class Reservation < ApplicationRecord
   belongs_to :user, optional: true
 
   validates_associated :tickets
+  validates :tickets, presence: true
   validates :status, presence: true,
                      inclusion: { in: %w[paid confirmed canceled], message: '%{status} is not a valid status' }
 end
