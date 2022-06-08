@@ -14,7 +14,7 @@ class TicketsController < ApplicationController
   end
 
   def create
-    @ticket = Tickets::UseCases::Create.new.call(params: ticket_params)
+    @ticket = Tickets::UseCases::Create.new.call(params: permitted_attributes)
 
     if @ticket.valid?
       render json: @ticket, status: :created
@@ -24,7 +24,7 @@ class TicketsController < ApplicationController
   end
 
   def update
-    @ticket = Tickets::UseCases::Update.new.call(id: params[:id], params: ticket_params)
+    @ticket = Tickets::UseCases::Update.new.call(id: params[:id], params: permitted_attributes)
 
     if @ticket.valid?
       render json: @ticket
@@ -39,15 +39,5 @@ class TicketsController < ApplicationController
 
   def validate_ticket
     Tickets::UseCases::ValidateTicket.new(params: ticket_validation_params).call
-  end
-
-  private
-
-  def ticket_params
-    params.require(:ticket).permit(:sort, :price, :reservation_id, :seat)
-  end
-
-  def ticket_validation_params
-    params.require(:ticket).permit(:qr_code)
   end
 end

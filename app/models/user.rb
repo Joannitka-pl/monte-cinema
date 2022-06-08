@@ -6,11 +6,11 @@ class User < ApplicationRecord
   has_many :reservations, dependent: :destroy
 
   enum role: {
-    user: 0,
-    usher: 1,
-    employee: 2,
-    admin: 3
-  }
+    user: 'user',
+    ticket_checker: 'ticket_checker',
+    employee: 'employee',
+    admin: 'admin'
+  }, _prefix: :role
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self

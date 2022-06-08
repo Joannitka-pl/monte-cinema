@@ -10,20 +10,19 @@ module Tickets
       end
 
       def call
-        check_ticket_date!(received_ticket_id)
+        check_ticket_date!
         validate_ticket!
       end
 
       private
 
-      def check_ticket_date!(received_ticket_id)
-        ticket = Tickets::Repository.new.show(received_ticket_id)
+      def check_ticket_date!
+        @ticket = Tickets::Repository.new.show(received_ticket_id)
         raise TicketDateExpired unless DateTime.now < ticket.reservation.seance.date + 1.hour
       end
 
       def validate_ticket!
-        ticket = Tickets::Repository.new.show(received_ticket_id)
-        raise QrCodeNotValid unless validate_qr_code(ticket)
+        raise QrCodeNotValid unless validate_qr_code(@ticket)
         raise TicketAlreadyUsed if ticket.used
 
         Tickets::UseCases::Update.new.mark_as_used(id: id)
