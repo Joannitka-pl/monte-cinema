@@ -12,12 +12,12 @@ class TicketPolicy
     %i[sort price reservation_id seat]
   end
 
-  def permitted_attributes_for_show
-    [:id]
-  end
-
   def permitted_attributes_for_update
     %i[id qr_code]
+  end
+
+  def permitted_attributes_for_validate
+    [:qr_code]
   end
 
   def destroy?

@@ -3,10 +3,11 @@
 module Tickets
   module UseCases
     class ValidateTicket
-      attr_reader :params
+      attr_reader :params, :ticket
 
-      def initialize(params:)
+      def initialize(params:, ticket:)
         @params = params
+        @ticket = ticket
       end
 
       def call
@@ -17,18 +18,17 @@ module Tickets
       private
 
       def check_ticket_date!
-        @ticket = Tickets::Repository.new.show(received_ticket_id)
         raise TicketDateExpired unless DateTime.now < ticket.reservation.seance.date + 1.hour
       end
 
       def validate_ticket!
-        raise QrCodeNotValid unless validate_qr_code(@ticket)
+        raise QrCodeNotValid unless qr_code_valid?
         raise TicketAlreadyUsed if ticket.used
 
         Tickets::UseCases::Update.new.mark_as_used(id: id)
       end
 
-      def qr_code_valid?(ticket)
+      def qr_code_valid?
         received_ticket_id == ticket.id && received_key == ticket.key
       end
 
