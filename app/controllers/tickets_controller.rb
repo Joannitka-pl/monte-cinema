@@ -38,7 +38,6 @@ class TicketsController < ApplicationController
   end
 
   def validate
-    @ticket = Tickets::Repository.new.show(received_ticket_id)
-    Tickets::UseCases::ValidateTicket.new(params: permitted_attributes(Post), ticket: @ticket).call
+    Tickets::UseCases::ValidateTicket.new(params: permitted_attributes(Post)).call
   end
 end
