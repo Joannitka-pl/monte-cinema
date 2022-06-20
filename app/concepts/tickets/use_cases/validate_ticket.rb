@@ -5,6 +5,8 @@ module Tickets
     class ValidateTicket
       attr_reader :params
 
+      include Tickets::Errors
+
       def initialize(params:)
         @params = params
       end
@@ -22,13 +24,13 @@ module Tickets
       end
 
       def validate_ticket!(ticket)
-        raise QrCodeNotValid unless qr_code_valid?
+        raise QrCodeNotValid unless qr_code_valid?(ticket)
         raise TicketAlreadyUsed if ticket.used
 
-        Tickets::UseCases::Update.new.mark_as_used(id: id)
+        Tickets::UseCases::Update.new.mark_as_used(id: ticket.id)
       end
 
-      def qr_code_valid?
+      def qr_code_valid?(ticket)
         received_ticket_id == ticket.id && received_key == ticket.key
       end
 

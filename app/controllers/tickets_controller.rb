@@ -4,12 +4,14 @@ class TicketsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @tickets = Tickets::UseCases::FetchAll.new.call
+    authorize Ticket
+    @tickets = policy_scope(Ticket)
     render json: Tickets::Representers::List.new(@tickets).basic
   end
 
   def show
     @ticket = Tickets::UseCases::Show.new.call(id: params[:id])
+    authorize @ticket
     render json: Tickets::Representers::Single.new(@ticket).extended
   end
 
