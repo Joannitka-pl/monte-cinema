@@ -21,11 +21,11 @@ class TicketPolicy
   end
 
   def destroy?
-    false unless user.admin?
+    true if user.role_admin?
   end
 
   def validate_ticket?
-    true if user.ticket_checker?
+    true if user.role_ticket_checker?
   end
 
   class Scope
