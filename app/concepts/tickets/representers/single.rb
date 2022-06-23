@@ -13,7 +13,8 @@ module Tickets
         {
           id: ticket.id,
           sort: ticket.sort,
-          price: ticket.price
+          price: ticket.price,
+          seat: ticket.seat
         }
       end
 

@@ -20,6 +20,18 @@ class TicketPolicy
     [:qr_code]
   end
 
+  def index?
+    true
+  end
+
+  def create?
+    true unless user.role_ticket_checker?
+  end
+
+  def update?
+    true unless user.role_ticket_checker? || user.role_user?
+  end
+
   def destroy?
     true if user.role_admin?
   end
@@ -37,9 +49,9 @@ class TicketPolicy
     end
 
     def resolve
-      return scope.all if user.admin? || user.ticket_checker?
+      return scope.all if user.role_admin? || user.role_ticket_checker?
 
-      scope.where(ticket.reservation.user_id == user.id)
+      scope.joins(:reservation).where(user.id == 'reservation.user_id')
     end
   end
 end
