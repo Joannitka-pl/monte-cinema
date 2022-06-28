@@ -17,14 +17,6 @@ module Tickets
           seat: ticket.seat
         }
       end
-
-      def extended
-        basic.merge(reservation.seat)
-      end
-
-      def reservation
-        Reservations::Representers::List.new(ticket.reservation).basic
-      end
     end
   end
 end

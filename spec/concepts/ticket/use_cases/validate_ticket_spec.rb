@@ -6,15 +6,15 @@ RSpec.describe Tickets::UseCases::ValidateTicket do
   describe '#call' do
     subject(:validate_ticket) { described_class.new(params: params) }
 
-    let(:seance) { create(:seance, id: 1, date: '2022-07-11 20:40:00') }
-    let(:ticket) { Ticket.new(id: 1, key: key) }
-    let(:reservation) { create(:reservation, id: 1, seance_id: 1, tickets: [ticket]) }
+    let(:seance) { create(:seance, date: '2022-07-11 20:40:00') }
+    let(:ticket) { Ticket.new(key: key) }
+    let(:reservation) { create(:reservation, seance_id: seance.id, tickets: [ticket]) }
     let(:date_of_client_arrival) { DateTime.now }
     let(:key) { 'UZLdOkzop70Ddx-IJR0ABgdi2839d-k>k2gsi88djw' }
     let(:params) do
       {
         qr_code: {
-          id: 1,
+          id: ticket.id,
           key: key
         }
       }

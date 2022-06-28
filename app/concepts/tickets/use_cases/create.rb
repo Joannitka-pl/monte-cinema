@@ -3,14 +3,7 @@
 module Tickets
   module UseCases
     class Create
-      attr_reader :tickets, :reservation
-
-      def initialize(reservation:, tickets:)
-        @reservation = reservation
-        @tickets = tickets
-      end
-
-      def call
+      def call(reservation:, tickets:)
         tickets.map do |ticket|
           reservation.tickets.create!(ticket.merge!(key: generate_key))
         end

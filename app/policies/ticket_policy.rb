@@ -24,20 +24,24 @@ class TicketPolicy
     true
   end
 
+  def show?
+    true
+  end
+
   def create?
-    true unless user.role_ticket_checker?
+    !user.role_ticket_checker?
   end
 
   def update?
-    true unless user.role_ticket_checker? || user.role_user?
+    !user.role_ticket_checker? || !user.role_user?
   end
 
   def destroy?
-    true if user.role_admin?
+    user.role_admin?
   end
 
   def validate_ticket?
-    true if user.role_ticket_checker?
+    user.role_ticket_checker?
   end
 
   class Scope
@@ -49,9 +53,9 @@ class TicketPolicy
     end
 
     def resolve
-      return scope.all if user.role_admin? || user.role_ticket_checker?
+      return scope.all if @user.role_admin? || @user.role_ticket_checker?
 
-      scope.joins(:reservation).where(user.id == 'reservation.user_id')
+      scope.joins(:reservation).where 'reservations.user_id = ?', user.id
     end
   end
 end

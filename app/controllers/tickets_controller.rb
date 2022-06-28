@@ -12,11 +12,11 @@ class TicketsController < ApplicationController
   def show
     @ticket = Tickets::UseCases::Show.new.call(id: params[:id])
     authorize @ticket
-    render json: Tickets::Representers::Single.new(@ticket).extended
+    render json: Tickets::Representers::Single.new(@ticket).basic
   end
 
   def create
-    @ticket = Tickets::UseCases::Create.new.call(params: permitted_attributes(Ticket))
+    @ticket = Tickets::UseCases::Create.new.call(reservation: params[:reservation], tickets: permitted_attributes(Ticket))
 
     if @ticket.valid?
       render json: @ticket, status: :created

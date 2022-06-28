@@ -11,7 +11,7 @@ describe TicketPolicy do
   let(:ticket_desk) { TicketDesk.create!(category: 'online') }
   let(:hall) { Hall.create!(number: '1', capacity: 500) }
   let(:movie) { Movie.create!(title: 'Start Wars', age_limit: '18', duration: '200') }
-  let(:ticket) { Ticket.new(id: 1, sort: 'regular', price: 20, seat: 'A1', key: 'ais73ueir902n.kd') }
+  let(:ticket) { Ticket.new(sort: 'regular', price: 20, seat: 'A1', key: 'ais73ueir902n.kd') }
   let(:reservation) do
     Reservation.create(
       status: 'confirmed',

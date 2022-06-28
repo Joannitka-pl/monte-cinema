@@ -15,8 +15,7 @@ module Reservations
           status: reservation.status,
           client_id: reservation.client_id,
           ticket_desk_id: reservation.ticket_desk_id,
-          seance_id: reservation.seance_id,
-          seat: reservation.seat
+          seance_id: reservation.seance_id
         }
       end
 
