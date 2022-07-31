@@ -5,7 +5,7 @@ class Reservation < ApplicationRecord
   belongs_to :ticket_desk
   belongs_to :client
   belongs_to :seance
-  belongs_to :user
+  belongs_to :client
 
   validates_associated :tickets
   validates :tickets, presence: true
