@@ -30,7 +30,7 @@ seance_3 = Seance.create!(date: '2021-07-11 12:30:00', hall_id: hall_3.id, movie
 
 client_1 = Client.create!(name: 'Joanna Kowal', email: 'joannakowal@mail.com', age: 20, real_user: false)
 client_2 = Client.create!(name: 'Anna Nowak', email: 'annanowak@mail.com', age: 21, real_user: true)
-client_3 = Client.create!(id: 3, name: ' Piotr Cybulski', email: 'piotrcybulski@mail.com', age: 12, real_user: false)
+client_3 = Client.create!(name: ' Piotr Cybulski', email: 'piotrcybulski@mail.com', age: 12, real_user: false)
 
 ticket_desk_1 = TicketDesk.create!(category: 'offline', number: 1)
 ticket_desk_2 = TicketDesk.create!(category: 'online', number: 0)
@@ -41,10 +41,10 @@ ticket_3 = Ticket.new(sort: 'regular', price: 20, seat: 'A3', key: '4-ske,ci-=wl
 
 Reservation.create!(status: 'confirmed', seance_id: seance_1.id,
                     ticket_desk_id: ticket_desk_1.id, client_id: client_1.id,
-                    user_id: 1, tickets: [ticket_1])
+                    tickets: [ticket_1])
 Reservation.create!(status: 'confirmed', seance_id: seance_2.id,
                     ticket_desk_id: ticket_desk_2.id, client_id: client_2.id,
-                    user_id: 1, tickets: [ticket_1, ticket_2])
+                    tickets: [ticket_1, ticket_2])
 Reservation.create!(status: 'canceled', seance_id: seance_3.id,
                     ticket_desk_id: ticket_desk_1.id, client_id: client_3.id,
-                    user_id: 2, tickets: [ticket_1, ticket_2, ticket_3])
+                    tickets: [ticket_1, ticket_2, ticket_3])
