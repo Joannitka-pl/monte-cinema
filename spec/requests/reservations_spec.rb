@@ -8,9 +8,10 @@ RSpec.describe 'Reservations', type: :request do
   let(:ticket_desk) { TicketDesk.create!(category: 'online') }
   let(:hall) { Hall.create!(number: '1', capacity: 500) }
   let(:movie) { Movie.create!(title: 'Start Wars', age_limit: '18', duration: '200') }
+  let(:ticket_1) { Ticket.new(id: 1, sort: 'regular', price: 20, seat: 'A1', key: 'ais73ueir902n.kd') }
   let(:reservation) do
     Reservation.create!(status: 'confirmed', client_id: client.id, seance_id: seance.id, ticket_desk_id: ticket_desk.id,
-                        seat: 'A10')
+                        tickets: [ticket_1])
   end
 
   describe 'GET /reservations' do
