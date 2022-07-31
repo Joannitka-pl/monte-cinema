@@ -4,7 +4,7 @@ module Tickets
   module UseCases
     class Create
       def call(reservation:, tickets:)
-        tickets.map do |ticket|
+        tickets.tap do |ticket|
           reservation.tickets.create!(ticket.merge!(key: generate_key))
         end
       end
