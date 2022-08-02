@@ -1,18 +1,25 @@
 # frozen_string_literal: true
 
 class TicketsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @tickets = Tickets::UseCases::FetchAll.new.call
+    authorize Ticket
+    @tickets = policy_scope(Ticket)
     render json: Tickets::Representers::List.new(@tickets).basic
   end
 
   def show
     @ticket = Tickets::UseCases::Show.new.call(id: params[:id])
-    render json: Tickets::Representers::Single.new(@ticket).extended
+    authorize @ticket
+    render json: Tickets::Representers::Single.new(@ticket).basic
   end
 
   def create
-    @ticket = Tickets::UseCases::Create.new.call(params: ticket_params)
+    @ticket = Tickets::UseCases::Create.new.call(
+      reservation: params[:reservation],
+      tickets: permitted_attributes(Ticket)
+    )
 
     if @ticket.valid?
       render json: @ticket, status: :created
@@ -22,7 +29,7 @@ class TicketsController < ApplicationController
   end
 
   def update
-    @ticket = Tickets::UseCases::Update.new.call(id: params[:id], params: ticket_params)
+    @ticket = Tickets::UseCases::Update.new.call(id: params[:id], params: permitted_attributes(Ticket))
 
     if @ticket.valid?
       render json: @ticket
@@ -35,9 +42,7 @@ class TicketsController < ApplicationController
     Tickets::UseCases::Destroy.new.call(id: params[:id])
   end
 
-  private
-
-  def ticket_params
-    params.require(:ticket).permit(:sort, :price, :reservation_id, :seat)
+  def validate
+    Tickets::UseCases::ValidateTicket.new(params: permitted_attributes(Ticket)).call
   end
 end

@@ -13,16 +13,9 @@ module Tickets
         {
           id: ticket.id,
           sort: ticket.sort,
-          price: ticket.price
+          price: ticket.price,
+          seat: ticket.seat
         }
-      end
-
-      def extended
-        basic.merge(reservation.seat)
-      end
-
-      def reservation
-        Reservations::Representers::List.new(ticket.reservation).basic
       end
     end
   end

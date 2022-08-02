@@ -16,6 +16,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'devise-jwt'
 gem 'pundit'
+gem 'pundit-matchers', '~> 1.4', '>= 1.4.1'
 gem 'sentry-rails'
 gem 'sentry-ruby'
 gem 'sidekiq'

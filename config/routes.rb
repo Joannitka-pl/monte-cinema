@@ -15,4 +15,10 @@ Rails.application.routes.draw do
       post '/offline', to: 'reservations#create_offline'
     end
   end
+
+  resources :tickets do
+    collection do
+      put '/validate', to: 'tickets#validate'
+    end
+  end
 end

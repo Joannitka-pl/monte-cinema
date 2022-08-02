@@ -10,7 +10,7 @@ module Reservations
       end
 
       def basic
-        reservations.map do |reservation|
+        reservations.tap do |reservation|
           Single.new(reservation).basic
         end
       end
