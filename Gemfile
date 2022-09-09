@@ -20,6 +20,7 @@ gem 'pundit-matchers', '~> 1.4', '>= 1.4.1'
 gem 'sentry-rails'
 gem 'sentry-ruby'
 gem 'sidekiq'
+gem 'stripe', '~> 6.2'
 
 # printing Ruby objects in a pretty way
 gem 'awesome_print', '~> 1.9.2'
